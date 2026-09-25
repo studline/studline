@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Team | StudLine</title>
+
+<style>
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background:#F5F1E8;
+    color:#003135;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+header {
+    height:78px;
+    background:#003135;
+    padding:0 7%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid rgba(175,221,229,.15);
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo {
+    color:#F5F1E8;
+    text-decoration:none;
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo span {
+    color:#0FA4AF;
+}
+
+nav {
+    display:flex;
+    gap:26px;
+    align-items:center;
+}
+
+nav a {
+    color:#AFDDE5;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+nav a:hover {
+    color:#0FA4AF;
+}
+
+.nav-button {
+    background:#0FA4AF;
+    color:#003135 !important;
+    padding:12px 20px;
+    border-radius:5px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height:650px;
+    background:
+        linear-gradient(
+            rgba(2,73,80,.92),
+            rgba(2,73,80,.96)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        );
+
+    color:white;
+    padding:110px 8%;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+
+/* rotating background element */
+
+.hero:after {
+    content:"";
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    border:1px solid rgba(15,164,175,.25);
+
+    right:-230px;
+    top:80px;
+
+    transform:rotate(45deg);
+
+    animation:
+        rotateGraphic 18s linear infinite,
+        floatGraphic 5s ease-in-out infinite;
+}
+
+@keyframes rotateGraphic {
+
+    from {
+        transform:rotate(45deg);
+    }
+
+    to {
+        transform:rotate(405deg);
+    }
+
+}
+
+@keyframes floatGraphic {
+
+    0%,100% {
+        margin-top:0;
+    }
+
+    50% {
+        margin-top:25px;
+    }
+
+}
+
+
+.hero-inner {
+    max-width:1000px;
+    position:relative;
+    z-index:2;
+
+    opacity:0;
+    transform:translateY(40px);
+
+    animation:heroEnter 1s ease forwards;
+}
+
+@keyframes heroEnter {
+
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.eyebrow {
+    color:#0FA4AF;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-weight:900;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.hero h1 {
+    font-size:clamp(50px,8vw,90px);
+    line-height:.95;
+    letter-spacing:-5px;
+    max-width:900px;
+}
+
+.hero h1 span {
+    color:#0FA4AF;
+}
+
+.hero p {
+    font-size:20px;
+    line-height:1.7;
+    max-width:750px;
+    color:#d4e9eb;
+    margin-top:30px;
+}
+
+
+/* =========================
+   TEAM SECTION
+========================= */
+
+.team {
+    padding:110px 8%;
+    background:#F5F1E8;
+}
+
+.team-intro {
+    max-width:750px;
+    margin:0 auto 65px;
+    text-align:center;
+
+    opacity:0;
+    transform:translateY(50px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.team-intro.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.team-intro h2 {
+    font-size:clamp(40px,5vw,60px);
+    letter-spacing:-3px;
+    margin-bottom:20px;
+}
+
+.team-intro p {
+    color:#52777B;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.team-grid {
+    max-width:1150px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+
+/* =========================
+   TEAM CARDS
+========================= */
+
+.person {
+    background:#003135;
+    color:white;
+
+    min-height:500px;
+    padding:35px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    position:relative;
+    overflow:hidden;
+
+    opacity:0;
+    transform:translateY(70px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1),
+        box-shadow .35s;
+}
+
+
+/* animated accent line */
+
+.person:after {
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    top:0;
+    left:-100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(15,164,175,.08),
+            transparent
+        );
+
+    transition:.6s;
+}
+
+.person:hover:after {
+    left:100%;
+}
+
+
+.person.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.person:hover {
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(0,49,53,.25);
+}
+
+.person:first-child {
+    border-top:7px solid #0FA4AF;
+}
+
+.person:nth-child(2) {
+    border-top:7px solid #964734;
+}
+
+.person:nth-child(3) {
+    border-top:7px solid #AFDDE5;
+}
+
+.person-number {
+    position:absolute;
+    top:30px;
+    right:30px;
+
+    color:rgba(175,221,229,.18);
+
+    font-size:60px;
+    font-weight:900;
+}
+
+.person-role {
+    color:#0FA4AF;
+
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:bold;
+
+    position:relative;
+    z-index:2;
+}
+
+.person:nth-child(2) .person-role {
+    color:#964734;
+}
+
+.person:nth-child(3) .person-role {
+    color:#AFDDE5;
+}
+
+.person h2 {
+    font-size:32px;
+    margin:12px 0;
+
+    color:#AFDDE5;
+
+    position:relative;
+    z-index:2;
+}
+
+.person p {
+    line-height:1.7;
+    color:#d4e8ea;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* =========================
+   TEAM QUOTE
+========================= */
+
+.quote {
+    padding:110px 8%;
+
+    background:#AFDDE5;
+
+    text-align:center;
+
+    opacity:0;
+    transform:translateY(60px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.quote.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.quote blockquote {
+    max-width:850px;
+    margin:auto;
+
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.35;
+
+    font-weight:bold;
+
+    color:#003135;
+}
+
+.quote p {
+    color:#964734;
+    font-weight:bold;
+    margin-top:25px;
+    letter-spacing:2px;
+    font-size:12px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.footer-section {
+    padding:110px 8%;
+
+    text-align:center;
+
+    background:#F5F1E8;
+
+    opacity:0;
+    transform:translateY(60px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.footer-section.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.footer-section .eyebrow {
+    color:#964734;
+}
+
+.footer-section h2 {
+    font-size:clamp(40px,5vw,60px);
+    letter-spacing:-3px;
+    margin-bottom:18px;
+}
+
+.footer-section p {
+    color:#52777B;
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.footer-section a {
+    display:inline-block;
+
+    padding:16px 30px;
+
+    background:#0FA4AF;
+    color:#003135;
+
+    text-decoration:none;
+
+    font-weight:900;
+
+    border-radius:5px;
+
+    transition:.25s;
+}
+
+.footer-section a:hover {
+    background:#024950;
+    color:#F5F1E8;
+    transform:translateY(-4px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background:#003135;
+    color:#AFDDE5;
+    text-align:center;
+    padding:30px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px) {
+
+    header {
+        height:auto;
+        min-height:78px;
+        padding:18px 7%;
+    }
+
+    nav {
+        gap:14px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    nav a {
+        font-size:12px;
+    }
+
+    .hero {
+        padding:80px 25px;
+        min-height:560px;
+    }
+
+    .hero h1 {
+        letter-spacing:-3px;
+    }
+
+    .team {
+        padding:75px 20px;
+    }
+
+    .team-grid {
+        grid-template-columns:1fr;
+    }
+
+    .person {
+        min-height:420px;
+    }
+
+    .quote {
+        padding:75px 25px;
+    }
+
+    .footer-section {
+        padding:80px 25px;
+    }
+
+}
+
+@media(max-width:520px) {
+
+    header {
+        flex-direction:column;
+        gap:18px;
+    }
+
+    nav {
+        justify-content:center;
+    }
+
+    .nav-button {
+        padding:10px 15px;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+```
+<a href="index.html" class="logo">
+    STUD<span>LINE</span>
+</a>
+
+<nav>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="product.html">
+        Product
+    </a>
+
+    <a href="technology.html">
+        Technology
+    </a>
+
+    <a href="team.html">
+        Team
+    </a>
+
+    <a class="nav-button" href="early-access.html">
+        Early Access
+    </a>
+
+</nav>
+```
+
+</header>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+```
+<div class="hero-inner">
+
+    <div class="eyebrow">
+        The People Behind the Product
+    </div>
+
+    <h1>
+        Three people.<br>
+        One <span>mission.</span>
+    </h1>
+
+    <p>
+        Three engineers. Three different strengths.
+        One product we're determined to bring to life.
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section class="team">
+
+```
+<div class="team-intro">
+
+    <div class="eyebrow">
+        The StudLine Team
+    </div>
+
+    <h2>
+        Different strengths. One direction.
+    </h2>
+
+    <p>
+        StudLine exists because research, engineering, manufacturing,
+        and business have to work together. Each member of the team
+        brings a different piece of the process.
+    </p>
+
+</div>
+
+
+<div class="team-grid">
+
+
+    <!-- COBY -->
+
+    <div class="person">
+
+        <div class="person-number">
+            01
+        </div>
+
+        <div class="person-role">
+            Research • Analysis • Testing
+        </div>
+
+        <h2>
+            Coby Walker
+        </h2>
+
+        <p>
+            Coby drives the research, analysis, documentation, and
+            testing behind StudLine. His role is to investigate the
+            problem, evaluate ideas, record results, and help turn
+            testing into better design decisions.
+        </p>
+
+    </div>
+
+
+    <!-- CASH -->
+
+    <div class="person">
+
+        <div class="person-number">
+            02
+        </div>
+
+        <div class="person-role">
+            Business • Marketing • Strategy
+        </div>
+
+        <h2>
+            Cash Stuart
+        </h2>
+
+        <p>
+            Cash brings the entrepreneurial side of the team.
+            He focuses on marketing, customer awareness, business
+            strategy, and understanding how StudLine can become a
+            product people actually want to use.
+        </p>
+
+    </div>
+
+
+    <!-- ELIJAH -->
+
+    <div class="person">
+
+        <div class="person-number">
+            03
+        </div>
+
+        <div class="person-role">
+            Engineering • CAD • Manufacturing
+        </div>
+
+        <h2>
+            Elijah Weers
+        </h2>
+
+        <p>
+            Elijah turns ideas into physical designs. He works in
+            CAD, models components, manages 3D printers, lasers,
+            and the steel mill, and leads the hands-on construction
+            that turns concepts into prototypes.
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =========================
+     QUOTE
+========================= -->
+
+<section class="quote">
+
+```
+<blockquote>
+    “Research finds the problem. Design finds the solution.
+    Business finds the path forward.”
+</blockquote>
+
+<p>
+    — THE STUDLINE TEAM
+</p>
+```
+
+</section>
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="footer-section">
+
+```
+<div class="eyebrow">
+    The Next Step
+</div>
+
+<h2>
+    We're still building.
+</h2>
+
+<p>
+    Follow the development of StudLine and get involved early.
+</p>
+
+<a href="early-access.html">
+    Join Early Access
+</a>
+```
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+    © 2026 StudLine
+</footer>
+
+<script>
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+const revealElements = document.querySelectorAll(
+    ".team-intro, .person, .quote, .footer-section"
+);
+
+
+const revealObserver = new IntersectionObserver(
+
+    function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if(entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.15
+    }
+
+);
+
+
+revealElements.forEach(function(element) {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================
+   STAGGER TEAM CARDS
+========================================= */
+
+const people = document.querySelectorAll(".person");
+
+people.forEach(function(person, index) {
+
+    person.style.transitionDelay =
+        (index * 0.15) + "s";
+
+});
+
+
+</script>
+
+</body>
+</html>

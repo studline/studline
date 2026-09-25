@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudLine | Precision Layout for Modern Framing</title>
+
+<style>
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background:#F5F1E8;
+    color:#003135;
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+nav {
+    min-height:78px;
+    background:#003135;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 7%;
+
+    border-bottom:1px solid rgba(175,221,229,.15);
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo {
+    color:#F5F1E8;
+    text-decoration:none;
+
+    font-size:27px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+.logo span {
+    color:#0FA4AF;
+}
+
+.nav-links {
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+.nav-links a {
+    color:#AFDDE5;
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.nav-links a:hover {
+    color:#0FA4AF;
+}
+
+.nav-button {
+    background:#0FA4AF;
+    color:#003135 !important;
+
+    padding:12px 20px;
+    border-radius:5px;
+}
+
+.nav-button:hover {
+    background:#AFDDE5;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height:720px;
+
+    padding:110px 7%;
+
+    background:
+        linear-gradient(
+            rgba(0,49,53,.90),
+            rgba(0,49,53,.96)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        );
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    gap:50px;
+
+    position:relative;
+    overflow:hidden;
+}
+
+
+/* rotating background shape */
+
+.hero:after {
+
+    content:"";
+
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    border:1px solid rgba(15,164,175,.25);
+
+    right:-230px;
+    top:80px;
+
+    transform:rotate(45deg);
+
+    animation:
+        rotateGraphic 18s linear infinite,
+        floatGraphic 5s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+@keyframes rotateGraphic {
+
+    from {
+        transform:rotate(45deg);
+    }
+
+    to {
+        transform:rotate(405deg);
+    }
+
+}
+
+@keyframes floatGraphic {
+
+    0%,100% {
+        margin-top:0;
+    }
+
+    50% {
+        margin-top:25px;
+    }
+
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:900px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    animation:
+        heroEnter 1s ease forwards;
+}
+
+@keyframes heroEnter {
+
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.eyebrow {
+
+    color:#0FA4AF;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    margin-bottom:18px;
+}
+
+.hero h1 {
+
+    color:#F5F1E8;
+
+    font-size:clamp(52px,8vw,96px);
+
+    line-height:.92;
+
+    letter-spacing:-5px;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.hero h1 span {
+    color:#0FA4AF;
+}
+
+.hero p {
+
+    max-width:700px;
+
+    margin:30px auto 0;
+
+    color:#AFDDE5;
+
+    font-size:19px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   HERO BUTTONS
+========================================= */
+
+.hero-buttons {
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:38px;
+}
+
+.button {
+
+    display:inline-block;
+
+    padding:16px 27px;
+
+    background:#0FA4AF;
+
+    color:#003135;
+
+    text-decoration:none;
+
+    border-radius:5px;
+
+    font-weight:900;
+
+    transition:.3s;
+}
+
+.button:hover {
+
+    transform:translateY(-5px);
+
+    background:#AFDDE5;
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.25);
+}
+
+.button-outline {
+
+    background:transparent;
+
+    border:1px solid #0FA4AF;
+
+    color:#AFDDE5;
+}
+
+.button-outline:hover {
+
+    background:#0FA4AF;
+
+    color:#003135;
+}
+
+
+/* =========================================
+   HERO PRODUCT VISUAL
+========================================= */
+
+.hero-product {
+
+    width:100%;
+    max-width:850px;
+
+    min-height:330px;
+
+    background:#024950;
+
+    border:1px solid #0FA4AF;
+
+    border-radius:10px;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 70px
+        rgba(0,0,0,.25);
+
+    opacity:0;
+
+    transform:
+        translateY(50px)
+        scale(.96);
+
+    animation:
+        productEnter 1s ease .25s forwards;
+
+    transition:
+        transform .2s ease;
+}
+
+@keyframes productEnter {
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* chalkline */
+
+.chalk-line {
+
+    position:absolute;
+
+    width:82%;
+
+    height:3px;
+
+    background:#0FA4AF;
+
+    box-shadow:
+        0 0 15px
+        rgba(15,164,175,.5);
+}
+
+.chalk-line:before,
+.chalk-line:after {
+
+    content:"";
+
+    position:absolute;
+
+    width:18px;
+    height:18px;
+
+    border:3px solid #AFDDE5;
+
+    border-radius:50%;
+
+    top:-8px;
+
+    background:#024950;
+}
+
+.chalk-line:before {
+    left:-2px;
+}
+
+.chalk-line:after {
+    right:-2px;
+}
+
+
+/* stud markers */
+
+.stud-markers {
+
+    position:absolute;
+
+    width:82%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    top:calc(50% - 25px);
+}
+
+.marker {
+
+    width:2px;
+
+    height:52px;
+
+    background:#964734;
+
+    box-shadow:
+        0 0 10px
+        rgba(150,71,52,.5);
+}
+
+.product-name {
+
+    position:relative;
+
+    z-index:3;
+
+    color:#F5F1E8;
+
+    font-size:52px;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+}
+
+.product-name span {
+    color:#0FA4AF;
+}
+
+.product-caption {
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    color:#AFDDE5;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    font-weight:900;
+}
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal {
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .85s ease,
+        transform .85s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro {
+
+    padding:110px 7%;
+
+    background:#F5F1E8;
+}
+
+.intro-inner {
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.intro h2 {
+
+    font-size:clamp(40px,5vw,62px);
+
+    letter-spacing:-3px;
+
+    margin-bottom:25px;
+}
+
+.intro p {
+
+    color:#52777B;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   VALUE
+========================================= */
+
+.value {
+
+    padding:110px 7%;
+
+    background:#024950;
+
+    color:#F5F1E8;
+}
+
+.value-header {
+
+    max-width:750px;
+
+    margin:0 auto 60px;
+
+    text-align:center;
+}
+
+.value-header h2 {
+
+    font-size:clamp(40px,5vw,60px);
+
+    letter-spacing:-3px;
+
+    margin:15px 0 20px;
+}
+
+.value-header p {
+
+    color:#AFDDE5;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.value-grid {
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.value-card {
+
+    padding:40px;
+
+    background:#003135;
+
+    border:1px solid rgba(175,221,229,.18);
+
+    border-radius:8px;
+
+    min-height:270px;
+
+    transition:
+        transform .3s,
+        border-color .3s,
+        box-shadow .3s;
+}
+
+.value-card:hover {
+
+    transform:translateY(-9px);
+
+    border-color:#0FA4AF;
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.2);
+}
+
+.value-number {
+
+    color:#0FA4AF;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+.value-card h3 {
+
+    font-size:26px;
+
+    margin:20px 0 13px;
+}
+
+.value-card p {
+
+    color:#AFDDE5;
+
+    line-height:1.7;
+}
+
+
+/* =========================================
+   STATEMENT
+========================================= */
+
+.statement {
+
+    padding:120px 7%;
+
+    background:#F5F1E8;
+
+    text-align:center;
+}
+
+.statement-inner {
+
+    max-width:950px;
+
+    margin:auto;
+}
+
+.statement h2 {
+
+    font-size:clamp(42px,6vw,72px);
+
+    line-height:1;
+
+    letter-spacing:-4px;
+
+    margin-bottom:30px;
+}
+
+.statement h2 span {
+    color:#964734;
+}
+
+.statement p {
+
+    color:#52777B;
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   DEVELOPMENT
+========================================= */
+
+.development {
+
+    padding:110px 7%;
+
+    background:#003135;
+
+    color:#F5F1E8;
+}
+
+.development-grid {
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+}
+
+.development-card {
+
+    padding:45px;
+
+    background:#024950;
+
+    border:1px solid rgba(175,221,229,.18);
+
+    border-radius:8px;
+
+    min-height:260px;
+}
+
+.development-card h3 {
+
+    font-size:28px;
+
+    margin:18px 0 13px;
+}
+
+.development-card p {
+
+    color:#AFDDE5;
+
+    line-height:1.8;
+}
+
+.development-number {
+
+    color:#0FA4AF;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta {
+
+    padding:120px 7%;
+
+    background:#AFDDE5;
+
+    text-align:center;
+}
+
+.cta h2 {
+
+    font-size:clamp(42px,6vw,68px);
+
+    letter-spacing:-4px;
+
+    margin-bottom:20px;
+}
+
+.cta p {
+
+    color:#52777B;
+
+    max-width:650px;
+
+    margin:auto;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.cta .button {
+
+    margin-top:35px;
+
+    background:#003135;
+
+    color:#F5F1E8;
+}
+
+.cta .button:hover {
+
+    background:#964734;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    padding:35px 7%;
+
+    background:#003135;
+
+    color:#AFDDE5;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+/* =========================================
+   TABLET / MOBILE
+========================================= */
+
+@media(max-width:800px) {
+
+    nav {
+
+        height:auto;
+
+        min-height:78px;
+
+        padding:18px 7%;
+
+    }
+
+    .nav-links {
+
+        gap:12px;
+
+        flex-wrap:wrap;
+
+        justify-content:flex-end;
+    }
+
+    .nav-links a {
+
+        font-size:12px;
+    }
+
+    .hero {
+
+        min-height:auto;
+
+        padding:85px 7%;
+
+        gap:40px;
+    }
+
+    .hero h1 {
+
+        font-size:
+            clamp(48px,13vw,72px);
+
+        letter-spacing:-3px;
+    }
+
+    .hero p {
+
+        font-size:17px;
+
+        line-height:1.7;
+    }
+
+    .hero-product {
+
+        min-height:280px;
+    }
+
+    .product-name {
+
+        font-size:40px;
+    }
+
+    .intro,
+    .value,
+    .statement,
+    .development,
+    .cta {
+
+        padding:75px 7%;
+    }
+
+    .value-grid {
+
+        grid-template-columns:1fr;
+    }
+
+    .development-grid {
+
+        grid-template-columns:1fr;
+    }
+
+    footer {
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONE
+========================================= */
+
+@media(max-width:520px) {
+
+    nav {
+
+        flex-direction:column;
+
+        gap:18px;
+    }
+
+    .nav-links {
+
+        justify-content:center;
+    }
+
+    .hero {
+
+        padding:
+            70px 6%;
+    }
+
+    .hero-buttons {
+
+        flex-direction:column;
+
+        width:100%;
+    }
+
+    .hero-buttons .button {
+
+        width:100%;
+
+        text-align:center;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+```
+<a href="index.html" class="logo">
+    STUD<span>LINE</span>
+</a>
+
+<div class="nav-links">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="product.html">
+        Product
+    </a>
+
+    <a href="technology.html">
+        Technology
+    </a>
+
+    <a href="team.html">
+        Team
+    </a>
+
+    <a
+        href="early-access.html"
+        class="nav-button"
+    >
+        Early Access
+    </a>
+
+</div>
+```
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+```
+<div class="hero-content">
+
+    <div class="eyebrow">
+        Precision Layout / Modern Framing
+    </div>
+
+    <h1>
+        Stop measuring.<br>
+        Start <span>building.</span>
+    </h1>
+
+    <p>
+        StudLine is a purpose-built chalkline concept designed
+        for framers. Snap the line and see where your studs need
+        to go — turning repetitive layout into a faster,
+        more intuitive process.
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a
+            href="product.html"
+            class="button"
+        >
+            Explore StudLine
+        </a>
+
+        <a
+            href="early-access.html"
+            class="button button-outline"
+        >
+            Get Early Access
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT VISUAL -->
+
+<div class="hero-product">
+
+    <div class="chalk-line"></div>
+
+    <div class="stud-markers">
+
+        <div class="marker"></div>
+        <div class="marker"></div>
+        <div class="marker"></div>
+        <div class="marker"></div>
+        <div class="marker"></div>
+        <div class="marker"></div>
+
+    </div>
+
+    <div class="product-name">
+        STUD<span>LINE</span>
+    </div>
+
+    <div class="product-caption">
+        PRECISION LAYOUT / BUILT FOR FRAMERS
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- INTRO -->
+
+<section class="intro">
+
+```
+<div class="intro-inner reveal">
+
+    <div class="eyebrow">
+        The Problem
+    </div>
+
+    <h2>
+        Framing layout shouldn't be harder than framing.
+    </h2>
+
+    <p>
+        Measuring, marking, checking, and rechecking stud locations
+        takes time. StudLine is being developed around one simple
+        idea: make the layout itself work harder for the framer.
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- VALUE -->
+
+<section class="value">
+
+```
+<div class="value-header reveal">
+
+    <div class="eyebrow">
+        Why StudLine
+    </div>
+
+    <h2>
+        Built around the job.
+    </h2>
+
+    <p>
+        StudLine is being engineered with the realities of framing
+        in mind — speed, precision, simplicity, and repeatability.
+    </p>
+
+</div>
+
+
+<div class="value-grid">
+
+    <div class="value-card reveal">
+
+        <div class="value-number">
+            01 / SPEED
+        </div>
+
+        <h3>
+            Less repetitive measuring.
+        </h3>
+
+        <p>
+            Spend less time repeatedly measuring stud locations
+            and more time actually building.
+        </p>
+
+    </div>
+
+
+    <div class="value-card reveal">
+
+        <div class="value-number">
+            02 / PRECISION
+        </div>
+
+        <h3>
+            Clearer layout.
+        </h3>
+
+        <p>
+            StudLine is designed to make stud locations immediately
+            visible after the line is snapped.
+        </p>
+
+    </div>
+
+
+    <div class="value-card reveal">
+
+        <div class="value-number">
+            03 / WORKFLOW
+        </div>
+
+        <h3>
+            Designed for framers.
+        </h3>
+
+        <p>
+            Instead of changing the way people frame, StudLine
+            is being developed around the tools and workflow
+            framers already understand.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- STATEMENT -->
+
+<section class="statement">
+
+```
+<div class="statement-inner reveal">
+
+    <div class="eyebrow">
+        The Idea
+    </div>
+
+    <h2>
+        One line.<br>
+        Every <span>stud.</span>
+    </h2>
+
+    <p>
+        StudLine takes a familiar tool — the chalkline —
+        and approaches it from a different angle. The goal is
+        simple: give the framer a clearer layout with less
+        repetitive work.
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- DEVELOPMENT -->
+
+<section class="development">
+
+```
+<div class="value-header reveal">
+
+    <div class="eyebrow">
+        Built, Tested, Improved
+    </div>
+
+    <h2>
+        This isn't just an idea.
+    </h2>
+
+    <p>
+        StudLine is being developed through research, CAD,
+        prototyping, testing, analysis, and continuous iteration.
+    </p>
+
+</div>
+
+
+<div class="development-grid">
+
+    <div class="development-card reveal">
+
+        <div class="development-number">
+            01 / ENGINEERING
+        </div>
+
+        <h3>
+            Design the solution.
+        </h3>
+
+        <p>
+            Digital models and physical prototypes allow us to
+            test mechanisms, materials, dimensions, and usability
+            before moving toward a finished product.
+        </p>
+
+    </div>
+
+
+    <div class="development-card reveal">
+
+        <div class="development-number">
+            02 / TESTING
+        </div>
+
+        <h3>
+            Challenge the idea.
+        </h3>
+
+        <p>
+            We test prototypes to discover what works, what fails,
+            and what needs to change. Each result becomes part
+            of the next iteration.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+```
+<div class="reveal">
+
+    <div class="eyebrow">
+        Get Involved
+    </div>
+
+    <h2>
+        See where StudLine goes next.
+    </h2>
+
+    <p>
+        We're building StudLine now. Follow the development,
+        learn about the technology, meet the team, and tell us
+        whether you'd want one on your tool belt.
+    </p>
+
+    <a
+        href="early-access.html"
+        class="button"
+    >
+        Join Early Access
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+```
+<strong>
+    STUDLINE
+</strong>
+
+<span>
+    Precision layout for modern framing.
+</span>
+```
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* SCROLL REVEAL */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if(entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:0.15
+        }
+
+    );
+
+
+revealElements.forEach(function(element) {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* STAGGER CARD ANIMATIONS */
+
+const valueCards =
+    document.querySelectorAll(".value-card");
+
+valueCards.forEach(function(card,index) {
+
+    card.style.transitionDelay =
+        (index * 0.12) + "s";
+
+});
+
+
+const developmentCards =
+    document.querySelectorAll(".development-card");
+
+developmentCards.forEach(function(card,index) {
+
+    card.style.transitionDelay =
+        (index * 0.12) + "s";
+
+});
+
+
+/* HERO PARALLAX */
+
+const hero =
+    document.querySelector(".hero");
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        const scrollPosition =
+            window.scrollY;
+
+        if(scrollPosition < 700) {
+
+            hero.style.backgroundPosition =
+                "0 " +
+                (scrollPosition * 0.10) +
+                "px";
+
+        }
+
+    }
+);
+
+
+/* PRODUCT VISUAL MOVEMENT */
+
+const productVisual =
+    document.querySelector(".hero-product");
+
+productVisual.addEventListener(
+    "mousemove",
+    function(event) {
+
+        const rect =
+            productVisual.getBoundingClientRect();
+
+        const x =
+            (event.clientX - rect.left)
+            / rect.width;
+
+        const y =
+            (event.clientY - rect.top)
+            / rect.height;
+
+        const rotateX =
+            (y - .5) * -5;
+
+        const rotateY =
+            (x - .5) * 5;
+
+        productVisual.style.transform =
+            "translateY(0) scale(1.01) " +
+            "rotateX(" + rotateX + "deg) " +
+            "rotateY(" + rotateY + "deg)";
+
+    }
+);
+
+
+productVisual.addEventListener(
+    "mouseleave",
+    function() {
+
+        productVisual.style.transform =
+            "translateY(0) scale(1) " +
+            "rotateX(0deg) " +
+            "rotateY(0deg)";
+
+    }
+);
+
+</script>
+
+</body>
+</html>

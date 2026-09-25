@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudLine | Engineering & Technology</title>
+
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background:#003135;
+    color:#F5F1E8;
+    overflow-x:hidden;
+}
+
+/* NAVIGATION */
+
+nav {
+    height:78px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    background:#003135;
+    border-bottom:1px solid rgba(175,221,229,.15);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo {
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo span {
+    color:#0FA4AF;
+}
+
+.nav-links {
+    display:flex;
+    gap:26px;
+    align-items:center;
+}
+
+.nav-links a {
+    color:#AFDDE5;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav-links a:hover {
+    color:#0FA4AF;
+}
+
+.nav-button {
+    background:#0FA4AF;
+    color:#003135 !important;
+    padding:12px 20px;
+    border-radius:5px;
+}
+
+/* HERO */
+
+.hero {
+    min-height:650px;
+    padding:110px 7%;
+    background:
+        linear-gradient(rgba(0,49,53,.90),rgba(0,49,53,.94)),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        );
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+/* animated background grid */
+
+.hero:after {
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border:1px solid rgba(15,164,175,.18);
+    transform:rotate(45deg);
+    right:-250px;
+    top:70px;
+    animation:rotateGrid 18s linear infinite;
+}
+
+@keyframes rotateGrid {
+    from {
+        transform:rotate(45deg);
+    }
+
+    to {
+        transform:rotate(405deg);
+    }
+}
+
+.hero-content {
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+.eyebrow {
+    color:#0FA4AF;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-weight:900;
+    font-size:12px;
+}
+
+.hero h1 {
+    font-size:clamp(50px,8vw,95px);
+    line-height:.95;
+    letter-spacing:-5px;
+    max-width:900px;
+    margin:20px 0 30px;
+}
+
+.hero h1 span {
+    color:#0FA4AF;
+}
+
+.hero p {
+    max-width:650px;
+    color:#AFDDE5;
+    font-size:19px;
+    line-height:1.8;
+}
+
+/* FLOATING TECH LABEL */
+
+.tech-status {
+    margin-top:45px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 18px;
+    border:1px solid rgba(175,221,229,.25);
+    border-radius:5px;
+    color:#AFDDE5;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:800;
+}
+
+.status-dot {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#0FA4AF;
+    animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow:0 0 0 0 rgba(15,164,175,.7);
+    }
+
+    70% {
+        box-shadow:0 0 0 10px rgba(15,164,175,0);
+    }
+
+    100% {
+        box-shadow:0 0 0 0 rgba(15,164,175,0);
+    }
+
+}
+
+/* MAIN ENGINEERING SECTION */
+
+.section {
+    padding:100px 7%;
+    background:#024950;
+}
+
+.section h2 {
+    font-size:clamp(38px,5vw,60px);
+    letter-spacing:-2px;
+    margin-bottom:50px;
+}
+
+/* CARDS */
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.card {
+    padding:40px;
+    border:1px solid rgba(175,221,229,.2);
+    background:rgba(0,49,53,.5);
+    border-radius:8px;
+
+    opacity:0;
+    transform:translateY(45px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .3s,
+        box-shadow .3s;
+}
+
+.card.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover {
+    transform:translateY(-8px);
+    border-color:#0FA4AF;
+    box-shadow:0 20px 45px rgba(0,0,0,.2);
+}
+
+.card-number {
+    color:#0FA4AF;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.card h3 {
+    font-size:27px;
+    margin:20px 0 12px;
+}
+
+.card p {
+    color:#AFDDE5;
+    line-height:1.8;
+}
+
+/* ENGINEERING IMAGE SECTION */
+
+.engineering {
+    padding:100px 7%;
+    background:#F5F1E8;
+    color:#003135;
+}
+
+.engineering-content {
+    max-width:900px;
+}
+
+.engineering h2 {
+    font-size:55px;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.engineering p {
+    color:#52777B;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.quote {
+    margin-top:50px;
+    padding:35px;
+    border-left:4px solid #964734;
+    font-size:24px;
+    font-weight:700;
+}
+
+/* IMAGE / CAD SECTION */
+
+.media-section {
+    padding:100px 7%;
+    background:#F5F1E8;
+    color:#003135;
+}
+
+.media-header {
+    max-width:750px;
+    margin-bottom:55px;
+}
+
+.media-header h2 {
+    font-size:clamp(38px,5vw,60px);
+    letter-spacing:-2px;
+    margin:15px 0 20px;
+}
+
+.media-header p {
+    color:#52777B;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.media-grid {
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:20px;
+}
+
+/* MAIN IMAGE SPOT */
+
+.main-image {
+    min-height:480px;
+    background:#003135;
+    border-radius:10px;
+    border:1px solid #0FA4AF;
+    position:relative;
+    overflow:hidden;
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.main-image.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.main-image img {
+    width:100%;
+    height:480px;
+    object-fit:cover;
+    display:block;
+}
+
+.image-placeholder {
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    color:#AFDDE5;
+}
+
+.image-placeholder strong {
+    color:#0FA4AF;
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.image-placeholder span {
+    max-width:300px;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* SKETCHES */
+
+.sketches {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.sketch {
+    min-height:230px;
+    background:#003135;
+    border:1px solid #0FA4AF;
+    border-radius:8px;
+    position:relative;
+    overflow:hidden;
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        box-shadow .3s;
+}
+
+.sketch.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.sketch:hover {
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,49,53,.25);
+}
+
+.sketch img {
+    width:100%;
+    height:100%;
+    min-height:230px;
+    object-fit:cover;
+}
+
+.sketch-label {
+    position:absolute;
+    bottom:12px;
+    left:12px;
+    background:#003135;
+    color:#AFDDE5;
+    padding:7px 10px;
+    font-size:10px;
+    letter-spacing:1px;
+    font-weight:900;
+}
+
+/* RESEARCH SECTION */
+
+.research {
+    padding:100px 7%;
+    background:#003135;
+}
+
+.research-box {
+    border:1px solid rgba(175,221,229,.2);
+    background:#024950;
+    padding:55px;
+    border-radius:10px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:40px;
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.research-box.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.research h2 {
+    font-size:clamp(38px,5vw,55px);
+    letter-spacing:-2px;
+    margin-bottom:15px;
+}
+
+.research p {
+    color:#AFDDE5;
+    line-height:1.8;
+    max-width:650px;
+}
+
+.pdf-button {
+    display:inline-block;
+    padding:17px 25px;
+    background:#0FA4AF;
+    color:#003135;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:900;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.pdf-button:hover {
+    background:#AFDDE5;
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+    padding:35px 7%;
+    background:#003135;
+    color:#AFDDE5;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    .nav-links {
+        display:none;
+    }
+
+    .hero {
+        padding:75px 7%;
+        min-height:570px;
+    }
+
+    .hero h1 {
+        letter-spacing:-3px;
+    }
+
+    .grid {
+        grid-template-columns:1fr;
+    }
+
+    .section,
+    .engineering,
+    .media-section,
+    .research {
+        padding:70px 7%;
+    }
+
+    .engineering h2 {
+        font-size:42px;
+    }
+
+    .media-grid {
+        grid-template-columns:1fr;
+    }
+
+    .sketches {
+        grid-template-columns:1fr 1fr;
+    }
+
+    .research-box {
+        grid-template-columns:1fr;
+        padding:35px;
+    }
+
+    .pdf-button {
+        width:100%;
+        text-align:center;
+    }
+}
+
+@media(max-width:500px) {
+
+    .sketches {
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        STUD<span>LINE</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="product.html">Product</a>
+
+        <a href="technology.html">Technology</a>
+
+        <a href="team.html">Team</a>
+
+        <a class="nav-button" href="contact.html">
+            Get Early Access
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            Engineering / Design / Testing
+        </div>
+
+        <h1>
+            Ideas become real<br>
+            through <span>iteration.</span>
+        </h1>
+
+        <p>
+            StudLine is being developed through CAD design, physical prototypes,
+            manufacturing, testing, analysis and continuous refinement.
+        </p>
+
+        <div class="tech-status">
+
+            <span class="status-dot"></span>
+
+            CURRENTLY IN DEVELOPMENT
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ENGINEERING PROCESS -->
+
+<section class="section">
+
+    <h2>
+        How we're building it.
+    </h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="card-number">
+                01 / CAD
+            </div>
+
+            <h3>
+                Design
+            </h3>
+
+            <p>
+                Components and concepts are developed digitally before
+                moving into physical prototypes.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-number">
+                02 / PROTOTYPE
+            </div>
+
+            <h3>
+                Build
+            </h3>
+
+            <p>
+                We turn digital concepts into physical parts using the
+                tools available in our engineering workspace.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-number">
+                03 / TEST
+            </div>
+
+            <h3>
+                Challenge
+            </h3>
+
+            <p>
+                Physical prototypes are tested to identify problems,
+                limitations and opportunities for improvement.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-number">
+                04 / ITERATE
+            </div>
+
+            <h3>
+                Improve
+            </h3>
+
+            <p>
+                Test results are fed back into the design process.
+                Every iteration moves the product closer to its purpose.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ENGINEERING MINDSET -->
+
+<section class="engineering">
+
+    <div class="engineering-content">
+
+        <div class="eyebrow">
+            The Engineering Mindset
+        </div>
+
+        <h2>
+            We don't fall in love with the first prototype.
+        </h2>
+
+        <p>
+            A good idea isn't enough. A product has to survive real use.
+            That means measuring what works, finding what doesn't,
+            changing the design and testing again.
+        </p>
+
+        <div class="quote">
+            “Build it. Test it. Break it. Improve it.”
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CAD / PRODUCT IMAGES -->
+
+<section class="media-section">
+
+    <div class="media-header">
+
+        <div class="eyebrow">
+            Development
+        </div>
+
+        <h2>
+            From sketch to prototype.
+        </h2>
+
+        <p>
+            This is where the ideas behind StudLine become physical.
+            CAD models, sketches and prototypes allow us to evaluate
+            the design before it reaches the jobsite.
+        </p>
+
+    </div>
+
+
+    <div class="media-grid">
+
+        <!-- MAIN IMAGE SPOT -->
+
+        <div class="main-image">
+
+            <!--
+            IMAGE SPOT #1
+
+            Put your main CAD render or prototype photo here.
+
+            Example:
+
+            <img
+                src="images/studline-cad.jpg"
+                alt="StudLine CAD design"
+            >
+            -->
+
+            <div class="image-placeholder">
+
+                <strong>
+                    CAD / PROTOTYPE IMAGE
+                </strong>
+
+                <span>
+                    Add a large image of the StudLine CAD model,
+                    prototype, or engineering setup here.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SKETCH IMAGE SPOTS -->
+
+        <div class="sketches">
+
+            <div class="sketch">
+
+                <!--
+                IMAGE SPOT #2
+
+                Example:
+
+                <img
+                    src="images/sketch-1.jpg"
+                    alt="StudLine engineering sketch"
+                >
+                -->
+
+                <div class="image-placeholder">
+
+                    <strong>
+                        SKETCH 01
+                    </strong>
+
+                    <span>
+                        Engineering drawing
+                    </span>
+
+                </div>
+
+                <div class="sketch-label">
+                    CONCEPT
+                </div>
+
+            </div>
+
+
+            <div class="sketch">
+
+                <!--
+                IMAGE SPOT #3
+
+                Example:
+
+                <img
+                    src="images/sketch-2.jpg"
+                    alt="StudLine design sketch"
+                >
+                -->
+
+                <div class="image-placeholder">
+
+                    <strong>
+                        SKETCH 02
+                    </strong>
+
+                    <span>
+                        Design development
+                    </span>
+
+                </div>
+
+                <div class="sketch-label">
+                    ITERATION
+                </div>
+
+            </div>
+
+
+            <div class="sketch">
+
+                <!--
+                IMAGE SPOT #4
+
+                Example:
+
+                <img
+                    src="images/sketch-3.jpg"
+                    alt="StudLine prototype sketch"
+                >
+                -->
+
+                <div class="image-placeholder">
+
+                    <strong>
+                        SKETCH 03
+                    </strong>
+
+                    <span>
+                        Mechanism concept
+                    </span>
+
+                </div>
+
+                <div class="sketch-label">
+                    MECHANISM
+                </div>
+
+            </div>
+
+
+            <div class="sketch">
+
+                <!--
+                IMAGE SPOT #5
+
+                Example:
+
+                <img
+                    src="images/sketch-4.jpg"
+                    alt="StudLine technical drawing"
+                >
+                -->
+
+                <div class="image-placeholder">
+
+                    <strong>
+                        SKETCH 04
+                    </strong>
+
+                    <span>
+                        Technical drawing
+                    </span>
+
+                </div>
+
+                <div class="sketch-label">
+                    ENGINEERING
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESEARCH PDF -->
+
+<section class="research">
+
+    <div class="research-box">
+
+        <div>
+
+            <div class="eyebrow">
+                Research & Documentation
+            </div>
+
+            <h2>
+                See the work behind the product.
+            </h2>
+
+            <p>
+                Our research documents the ideas, testing, development
+                and information that contribute to the evolution of StudLine.
+                Explore the research behind the project.
+            </p>
+
+        </div>
+
+
+        <!--
+        RESEARCH PDF LINK
+
+        Replace "research.pdf" with the actual name
+        of your PDF.
+
+        Example:
+
+        href="files/studline-research.pdf"
+        -->
+
+        <a
+            href="research.pdf"
+            class="pdf-button"
+            target="_blank"
+        >
+            View Research PDF
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <strong>
+        STUDLINE
+    </strong>
+
+</footer>
+
+
+<script>
+
+/* -----------------------------------
+   SCROLL REVEAL
+----------------------------------- */
+
+const animatedElements = document.querySelectorAll(
+    ".card, .main-image, .sketch, .research-box"
+);
+
+const observer = new IntersectionObserver(
+
+    function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if(entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.15
+    }
+
+);
+
+
+animatedElements.forEach(function(element) {
+
+    observer.observe(element);
+
+});
+
+
+/* -----------------------------------
+   STAGGER CARD ANIMATIONS
+----------------------------------- */
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(function(card, index) {
+
+    card.style.transitionDelay = `${index * 0.12}s`;
+
+});
+
+
+const sketches = document.querySelectorAll(".sketch");
+
+sketches.forEach(function(sketch, index) {
+
+    sketch.style.transitionDelay = `${index * 0.1}s`;
+
+});
+
+
+/* -----------------------------------
+   HERO PARALLAX EFFECT
+----------------------------------- */
+
+window.addEventListener("scroll", function() {
+
+    const hero = document.querySelector(".hero");
+    const scrollPosition = window.scrollY;
+
+    if(scrollPosition < 700) {
+
+        hero.style.backgroundPosition =
+            `0 ${scrollPosition * 0.15}px`;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

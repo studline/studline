@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudLine | The Product</title>
+
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background:#F5F1E8;
+    color:#003135;
+    overflow-x:hidden;
+}
+
+nav {
+    height:78px;
+    background:#003135;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo {
+    color:#F5F1E8;
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo span {
+    color:#0FA4AF;
+}
+
+.nav-links {
+    display:flex;
+    gap:26px;
+    align-items:center;
+}
+
+.nav-links a {
+    text-decoration:none;
+    color:#AFDDE5;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.nav-links a:hover {
+    color:#0FA4AF;
+}
+
+.nav-button {
+    background:#0FA4AF;
+    color:#003135 !important;
+    padding:12px 20px;
+    border-radius:5px;
+}
+
+.hero {
+    background:#003135;
+    color:#F5F1E8;
+    padding:100px 7%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+    min-height:650px;
+}
+
+.hero h1 {
+    font-size:clamp(50px,7vw,85px);
+    line-height:.95;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+
+.hero h1 span {
+    color:#0FA4AF;
+}
+
+.hero p {
+    color:#AFDDE5;
+    font-size:18px;
+    line-height:1.8;
+    max-width:600px;
+}
+
+.eyebrow {
+    color:#964734;
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+/* PRODUCT IMAGE AREA */
+
+.product-box {
+    height:440px;
+    background:#024950;
+    border:1px solid #0FA4AF;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    transition:transform .15s ease-out, box-shadow .3s;
+    transform-style:preserve-3d;
+}
+
+.product-box:hover {
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+.product-box:before {
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(175,221,229,.12);
+    transform:rotate(45deg);
+}
+
+.product-box:after {
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:#0FA4AF;
+    opacity:.08;
+    filter:blur(40px);
+}
+
+.product-image {
+    width:85%;
+    height:85%;
+    object-fit:contain;
+    position:relative;
+    z-index:5;
+    display:none;
+    border-radius:8px;
+}
+
+.line {
+    position:absolute;
+    width:85%;
+    height:3px;
+    background:#0FA4AF;
+    box-shadow:0 0 18px rgba(15,164,175,.8);
+    z-index:2;
+    transition:.4s;
+}
+
+.product-box:hover .line {
+    box-shadow:
+        0 0 10px #0FA4AF,
+        0 0 25px #0FA4AF,
+        0 0 45px rgba(15,164,175,.6);
+}
+
+.line:before,
+.line:after {
+    content:"";
+    position:absolute;
+    width:16px;
+    height:16px;
+    border:3px solid #AFDDE5;
+    border-radius:50%;
+    top:-8px;
+    background:#024950;
+}
+
+.line:before {
+    left:0;
+}
+
+.line:after {
+    right:0;
+}
+
+.product-label {
+    color:#F5F1E8;
+    font-size:55px;
+    font-weight:900;
+    z-index:3;
+    position:relative;
+}
+
+.product-label span {
+    color:#0FA4AF;
+}
+
+.prototype-tag {
+    position:absolute;
+    top:22px;
+    right:22px;
+    color:#AFDDE5;
+    font-size:10px;
+    letter-spacing:2px;
+    font-weight:900;
+    z-index:10;
+}
+
+.prototype-dot {
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#0FA4AF;
+    border-radius:50%;
+    margin-right:7px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow:0 0 0 0 rgba(15,164,175,.7);
+    }
+
+    70% {
+        box-shadow:0 0 0 10px rgba(15,164,175,0);
+    }
+
+    100% {
+        box-shadow:0 0 0 0 rgba(15,164,175,0);
+    }
+}
+
+/* SECTIONS */
+
+.section {
+    padding:100px 7%;
+}
+
+.center {
+    text-align:center;
+    max-width:750px;
+    margin:0 auto 60px;
+}
+
+h2 {
+    font-size:clamp(38px,5vw,60px);
+    letter-spacing:-2px;
+    margin-bottom:20px;
+}
+
+.center p {
+    color:#52777B;
+    line-height:1.8;
+    font-size:18px;
+}
+
+/* FEATURES */
+
+.features {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.feature {
+    background:white;
+    border:1px solid #dce5e4;
+    padding:40px;
+    border-radius:8px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        box-shadow .25s ease;
+}
+
+.feature.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.feature:hover {
+    transform:translateY(-7px);
+    box-shadow:0 18px 40px rgba(0,49,53,.12);
+}
+
+.feature span {
+    color:#0FA4AF;
+    font-size:13px;
+    font-weight:900;
+}
+
+.feature h3 {
+    margin:18px 0 12px;
+    font-size:25px;
+}
+
+.feature p {
+    color:#52777B;
+    line-height:1.7;
+}
+
+/* PRODUCT IMAGE SHOWCASE */
+
+.image-showcase {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+    margin-top:80px;
+}
+
+.image-frame {
+    min-height:430px;
+    background:#003135;
+    border:1px solid #0FA4AF;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.image-frame img {
+    width:100%;
+    height:430px;
+    object-fit:cover;
+    display:block;
+}
+
+.image-placeholder {
+    color:#AFDDE5;
+    text-align:center;
+    padding:30px;
+}
+
+.image-placeholder strong {
+    display:block;
+    color:#0FA4AF;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.image-placeholder span {
+    font-size:13px;
+    line-height:1.6;
+}
+
+.image-copy h3 {
+    font-size:38px;
+    letter-spacing:-1px;
+    margin-bottom:20px;
+}
+
+.image-copy p {
+    color:#52777B;
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* DARK SECTION */
+
+.dark {
+    background:#024950;
+    color:#F5F1E8;
+}
+
+.dark p {
+    color:#AFDDE5;
+}
+
+.steps {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.step {
+    border-top:2px solid #0FA4AF;
+    padding-top:25px;
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+
+.step.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.step-number {
+    color:#0FA4AF;
+    font-weight:900;
+    font-size:14px;
+}
+
+.step h3 {
+    margin:15px 0;
+    font-size:25px;
+}
+
+.step p {
+    color:#AFDDE5;
+    line-height:1.7;
+}
+
+/* CTA */
+
+.cta {
+    text-align:center;
+}
+
+.button {
+    display:inline-block;
+    background:#0FA4AF;
+    color:#003135;
+    text-decoration:none;
+    padding:16px 28px;
+    border-radius:5px;
+    font-weight:900;
+    transition:.2s;
+}
+
+.button:hover {
+    background:#AFDDE5;
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+    background:#003135;
+    padding:35px 7%;
+    color:#AFDDE5;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    .nav-links {
+        display:none;
+    }
+
+    .hero {
+        grid-template-columns:1fr;
+        padding:75px 7%;
+    }
+
+    .product-box {
+        height:350px;
+    }
+
+    .product-label {
+        font-size:40px;
+    }
+
+    .features,
+    .steps,
+    .image-showcase {
+        grid-template-columns:1fr;
+    }
+
+    .section {
+        padding:70px 7%;
+    }
+
+    .image-frame {
+        min-height:320px;
+    }
+
+    .image-frame img {
+        height:320px;
+    }
+
+    footer {
+        flex-direction:column;
+        gap:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        STUD<span>LINE</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="product.html">Product</a>
+        <a href="technology.html">Technology</a>
+        <a href="team.html">Team</a>
+        <a class="nav-button" href="contact.html">
+            Get Early Access
+        </a>
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div>
+
+        <div class="eyebrow">
+            The Product
+        </div>
+
+        <h1>
+            One line.<br>
+            Every <span>stud.</span>
+        </h1>
+
+        <p>
+            StudLine is a purpose-built chalkline concept for framing.
+            Instead of treating every stud location as a separate measurement,
+            StudLine is designed to make the layout process faster and more intuitive.
+        </p>
+
+    </div>
+
+
+    <!-- PRODUCT IMAGE SPOT #1 -->
+
+    <div class="product-box" id="productBox">
+
+        <div class="prototype-tag">
+            <span class="prototype-dot"></span>
+            PRODUCT PROTOTYPE
+        </div>
+
+        <!--
+        WHEN YOU HAVE A PRODUCT IMAGE:
+
+        1. Put your image in your project folder.
+        2. Change the src below.
+        3. Change display:none to display:block.
+        4. You can then remove the placeholder elements if you want.
+
+        Example:
+        src="images/studline-product.jpg"
+        -->
+
+        <img
+            class="product-image"
+            src="images/studline-product.jpg"
+            alt="StudLine product prototype"
+        >
+
+        <div class="line"></div>
+
+        <div class="product-label">
+            STUD<span>LINE</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="center">
+
+        <div class="eyebrow">
+            Designed Around the Job
+        </div>
+
+        <h2>
+            Simple idea. Serious engineering.
+        </h2>
+
+        <p>
+            The goal isn't to add another complicated tool to the framer's belt.
+            The goal is to make a familiar process better.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature">
+
+            <span>01 / LAYOUT</span>
+
+            <h3>
+                Make stud placement visible.
+            </h3>
+
+            <p>
+                StudLine is designed around making the locations of studs
+                immediately apparent after the line is snapped.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>02 / PRECISION</span>
+
+            <h3>
+                Reduce repetitive measuring.
+            </h3>
+
+            <p>
+                A layout tool should help the user spend less time
+                repeating measurements and checking marks.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>03 / WORKFLOW</span>
+
+            <h3>
+                Built around real framing.
+            </h3>
+
+            <p>
+                The product is being developed with construction workflows
+                and real-world usability in mind.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>04 / ITERATION</span>
+
+            <h3>
+                Engineered, tested, improved.
+            </h3>
+
+            <p>
+                StudLine is being continuously designed, prototyped,
+                tested and refined by our team.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT IMAGE SPOT #2 -->
+
+    <div class="image-showcase">
+
+        <div class="image-frame">
+
+            <!--
+            PRODUCT IMAGE SPOT #2
+
+            Replace the placeholder below with your own image.
+
+            Example:
+
+            <img
+                src="images/studline-prototype.jpg"
+                alt="StudLine prototype"
+            >
+            -->
+
+            <div class="image-placeholder">
+
+                <strong>
+                    YOUR PRODUCT IMAGE
+                </strong>
+
+                <span>
+                    Add a photo of the StudLine prototype,
+                    CAD model, or product detail here.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="image-copy">
+
+            <div class="eyebrow">
+                Built to Be Used
+            </div>
+
+            <h3>
+                Designed around the framer.
+            </h3>
+
+            <p>
+                StudLine is being developed with the real construction
+                environment in mind. Every part of the concept is being
+                evaluated around how a framer actually works, measures,
+                lays out and builds.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section dark">
+
+    <div class="center">
+
+        <div class="eyebrow">
+            The Vision
+        </div>
+
+        <h2>
+            From measurement to layout.
+        </h2>
+
+        <p>
+            We want StudLine to become a natural part of the framing workflow:
+            fast enough to use, simple enough to understand, and engineered
+            enough to trust.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Set
+            </h3>
+
+            <p>
+                Prepare the layout according to the framing requirements.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Snap
+            </h3>
+
+            <p>
+                Use the chalkline to establish the layout across the work surface.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Build
+            </h3>
+
+            <p>
+                Use the resulting layout as a guide for framing.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section cta">
+
+    <div class="center">
+
+        <div class="eyebrow">
+            Coming Next
+        </div>
+
+        <h2>
+            Want to see where we're taking it?
+        </h2>
+
+        <p>
+            Follow the development of StudLine and get notified when
+            we're ready to put it into more hands.
+        </p>
+
+        <br>
+
+        <a href="contact.html" class="button">
+            Join Early Access
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <strong>
+        STUDLINE
+    </strong>
+
+    <span>
+        Precision layout for modern framing.
+    </span>
+
+</footer>
+
+
+<script>
+
+/* -----------------------------------
+   PRODUCT TILT EFFECT
+----------------------------------- */
+
+const productBox = document.getElementById("productBox");
+
+productBox.addEventListener("mousemove", function(event) {
+
+    const rect = productBox.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateY = ((x - centerX) / centerX) * 5;
+    const rotateX = ((centerY - y) / centerY) * 5;
+
+    productBox.style.transform =
+        `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+});
+
+productBox.addEventListener("mouseleave", function() {
+
+    productBox.style.transform =
+        "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+
+});
+
+
+/* -----------------------------------
+   SCROLL ANIMATIONS
+----------------------------------- */
+
+const animatedElements = document.querySelectorAll(
+    ".feature, .step"
+);
+
+const observer = new IntersectionObserver(
+
+    function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if(entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.15
+    }
+
+);
+
+animatedElements.forEach(function(element) {
+    observer.observe(element);
+});
+
+
+/* -----------------------------------
+   PRODUCT LINE PULSE
+----------------------------------- */
+
+const line = document.querySelector(".line");
+
+setInterval(function() {
+
+    line.style.opacity = "0.55";
+
+    setTimeout(function() {
+        line.style.opacity = "1";
+    }, 350);
+
+}, 3000);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudLine | Early Access</title>
+
+<style>
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background:#F5F1E8;
+    color:#003135;
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+nav {
+    height:78px;
+
+    background:#003135;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 7%;
+
+    border-bottom:1px solid rgba(175,221,229,.15);
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo {
+    color:#F5F1E8;
+    text-decoration:none;
+
+    font-size:27px;
+    font-weight:900;
+}
+
+.logo span {
+    color:#0FA4AF;
+}
+
+.nav-links {
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+.nav-links a {
+    color:#AFDDE5;
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.nav-links a:hover {
+    color:#0FA4AF;
+}
+
+.nav-button {
+    background:#0FA4AF;
+
+    color:#003135 !important;
+
+    padding:12px 20px;
+
+    border-radius:5px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height:650px;
+
+    padding:110px 7%;
+
+    background:
+        linear-gradient(
+            rgba(0,49,53,.91),
+            rgba(0,49,53,.96)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 49px,
+            rgba(175,221,229,.05) 50px
+        );
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+
+/* rotating background */
+
+.hero:after {
+
+    content:"";
+
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    border:1px solid rgba(15,164,175,.25);
+
+    right:-230px;
+    top:80px;
+
+    transform:rotate(45deg);
+
+    animation:
+        rotateGraphic 18s linear infinite,
+        floatGraphic 5s ease-in-out infinite;
+}
+
+@keyframes rotateGraphic {
+
+    from {
+        transform:rotate(45deg);
+    }
+
+    to {
+        transform:rotate(405deg);
+    }
+
+}
+
+@keyframes floatGraphic {
+
+    0%,100% {
+        margin-top:0;
+    }
+
+    50% {
+        margin-top:25px;
+    }
+
+}
+
+
+.hero-content {
+
+    max-width:900px;
+
+    position:relative;
+    z-index:2;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    animation:heroEnter 1s ease forwards;
+}
+
+@keyframes heroEnter {
+
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.eyebrow {
+
+    color:#0FA4AF;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    margin-bottom:18px;
+}
+
+
+.hero h1 {
+
+    color:#F5F1E8;
+
+    font-size:clamp(50px,8vw,90px);
+
+    line-height:.95;
+
+    letter-spacing:-5px;
+
+    max-width:900px;
+}
+
+.hero h1 span {
+    color:#0FA4AF;
+}
+
+.hero p {
+
+    max-width:680px;
+
+    color:#AFDDE5;
+
+    font-size:19px;
+
+    line-height:1.8;
+
+    margin-top:30px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button {
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:16px 28px;
+
+    background:#0FA4AF;
+
+    color:#003135;
+
+    text-decoration:none;
+
+    border-radius:5px;
+
+    font-weight:900;
+
+    transition:.3s;
+}
+
+.button:hover {
+
+    background:#AFDDE5;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+
+/* =========================================
+   INTEREST SECTION
+========================================= */
+
+.interest {
+
+    padding:110px 7%;
+
+    background:#F5F1E8;
+}
+
+.interest-intro {
+
+    max-width:750px;
+
+    margin:0 auto 60px;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.interest-intro.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.interest-intro h2 {
+
+    font-size:clamp(40px,5vw,60px);
+
+    letter-spacing:-3px;
+
+    margin-bottom:20px;
+}
+
+.interest-intro p {
+
+    color:#52777B;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   FEEDBACK CARDS
+========================================= */
+
+.feedback-grid {
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.feedback-card {
+
+    background:white;
+
+    border:1px solid #dce5e4;
+
+    border-radius:8px;
+
+    padding:40px;
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1),
+        box-shadow .3s,
+        border-color .3s;
+}
+
+.feedback-card.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.feedback-card:hover {
+
+    transform:translateY(-8px);
+
+    border-color:#0FA4AF;
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,49,53,.12);
+}
+
+.feedback-number {
+
+    color:#0FA4AF;
+
+    font-weight:900;
+
+    font-size:13px;
+
+    letter-spacing:1px;
+}
+
+.feedback-card h3 {
+
+    font-size:25px;
+
+    margin:18px 0 12px;
+}
+
+.feedback-card p {
+
+    color:#52777B;
+
+    line-height:1.7;
+}
+
+
+/* =========================================
+   INSTAGRAM POLL SECTION
+========================================= */
+
+.poll-section {
+
+    padding:110px 7%;
+
+    background:#024950;
+
+    color:#F5F1E8;
+}
+
+.poll-container {
+
+    max-width:1050px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+}
+
+.poll-text {
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.poll-text.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.poll-text h2 {
+
+    font-size:clamp(40px,5vw,60px);
+
+    letter-spacing:-3px;
+
+    margin:15px 0 20px;
+}
+
+.poll-text p {
+
+    color:#AFDDE5;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   POLL BOX
+========================================= */
+
+.poll-box {
+
+    background:#003135;
+
+    border:1px solid rgba(175,221,229,.2);
+
+    border-radius:10px;
+
+    padding:45px;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:
+        translateY(70px)
+        scale(.97);
+
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.poll-box.show {
+
+    opacity:1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.poll-icon {
+
+    width:80px;
+    height:80px;
+
+    margin:0 auto 25px;
+
+    border:2px solid #0FA4AF;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#0FA4AF;
+
+    font-size:32px;
+
+    font-weight:900;
+}
+
+.poll-box h3 {
+
+    color:#F5F1E8;
+
+    font-size:28px;
+
+    margin-bottom:15px;
+}
+
+.poll-box p {
+
+    color:#AFDDE5;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+}
+
+.instagram-button {
+
+    display:inline-block;
+
+    padding:15px 25px;
+
+    background:#964734;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:5px;
+
+    font-weight:900;
+
+    transition:.3s;
+}
+
+.instagram-button:hover {
+
+    background:#0FA4AF;
+
+    color:#003135;
+
+    transform:translateY(-4px);
+}
+
+
+/* =========================================
+   QUESTIONS SECTION
+========================================= */
+
+.questions {
+
+    padding:110px 7%;
+
+    background:#F5F1E8;
+}
+
+.questions-header {
+
+    text-align:center;
+
+    max-width:750px;
+
+    margin:0 auto 60px;
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.questions-header.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.questions-header h2 {
+
+    font-size:clamp(40px,5vw,60px);
+
+    letter-spacing:-3px;
+
+    margin:15px 0 20px;
+}
+
+.questions-header p {
+
+    color:#52777B;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.question-grid {
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+}
+
+.question {
+
+    padding:30px;
+
+    border-left:4px solid #0FA4AF;
+
+    background:white;
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.question.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.question h3 {
+
+    font-size:20px;
+
+    margin-bottom:10px;
+}
+
+.question p {
+
+    color:#52777B;
+
+    line-height:1.6;
+}
+
+
+/* =========================================
+   FINAL CTA
+========================================= */
+
+.final-cta {
+
+    padding:110px 7%;
+
+    background:#AFDDE5;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.final-cta.show {
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.final-cta h2 {
+
+    font-size:clamp(40px,5vw,60px);
+
+    letter-spacing:-3px;
+
+    margin-bottom:18px;
+}
+
+.final-cta p {
+
+    color:#52777B;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    max-width:650px;
+
+    margin:auto;
+}
+
+.final-cta .button {
+
+    background:#003135;
+
+    color:#F5F1E8;
+}
+
+.final-cta .button:hover {
+
+    background:#964734;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    background:#003135;
+
+    color:#AFDDE5;
+
+    padding:35px 7%;
+
+    display:flex;
+
+    justify-content:space-between;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:800px) {
+
+    nav {
+
+        height:auto;
+
+        min-height:78px;
+
+        padding:18px 7%;
+    }
+
+    .nav-links {
+
+        gap:12px;
+
+        flex-wrap:wrap;
+
+        justify-content:flex-end;
+    }
+
+    .nav-links a {
+
+        font-size:12px;
+    }
+
+    .hero {
+
+        padding:80px 7%;
+
+        min-height:570px;
+    }
+
+    .hero h1 {
+
+        letter-spacing:-3px;
+    }
+
+    .interest,
+    .poll-section,
+    .questions,
+    .final-cta {
+
+        padding:75px 7%;
+    }
+
+    .feedback-grid {
+
+        grid-template-columns:1fr;
+    }
+
+    .poll-container {
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+    }
+
+    .question-grid {
+
+        grid-template-columns:1fr;
+    }
+
+    footer {
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+}
+
+@media(max-width:520px) {
+
+    nav {
+
+        flex-direction:column;
+
+        gap:18px;
+    }
+
+    .nav-links {
+
+        justify-content:center;
+    }
+
+    .poll-box {
+
+        padding:30px 20px;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<nav>
+
+```
+<a href="index.html" class="logo">
+    STUD<span>LINE</span>
+</a>
+
+<div class="nav-links">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="product.html">
+        Product
+    </a>
+
+    <a href="technology.html">
+        Technology
+    </a>
+
+    <a href="team.html">
+        Team
+    </a>
+
+    <a class="nav-button" href="early-access.html">
+        Early Access
+    </a>
+
+</div>
+```
+
+</nav>
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+```
+<div class="hero-content">
+
+    <div class="eyebrow">
+        Early Access / Customer Feedback
+    </div>
+
+    <h1>
+        Help shape<br>
+        <span>StudLine.</span>
+    </h1>
+
+    <p>
+        StudLine is being built for the people who will actually use it.
+        Tell us what you think, what you would want from it, and what
+        you believe a tool like this should be worth.
+    </p>
+
+    <a href="#poll" class="button">
+        Give Your Feedback
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- =========================================
+     WHY FEEDBACK MATTERS
+========================================= -->
+
+<section class="interest">
+
+```
+<div class="interest-intro">
+
+    <div class="eyebrow">
+        Before We Build It
+    </div>
+
+    <h2>
+        We want to hear from framers.
+    </h2>
+
+    <p>
+        The goal isn't simply to create something that looks good.
+        We want to know whether StudLine solves a real problem,
+        what features matter most, and whether people would actually
+        pay for it.
+    </p>
+
+</div>
+
+
+<div class="feedback-grid">
+
+
+    <div class="feedback-card">
+
+        <div class="feedback-number">
+            01 / INTEREST
+        </div>
+
+        <h3>
+            Would you use it?
+        </h3>
+
+        <p>
+            Tell us whether StudLine would actually make your
+            framing workflow easier or faster.
+        </p>
+
+    </div>
+
+
+    <div class="feedback-card">
+
+        <div class="feedback-number">
+            02 / VALUE
+        </div>
+
+        <h3>
+            What is it worth?
+        </h3>
+
+        <p>
+            Help us understand what price point makes sense
+            for a professional framing tool.
+        </p>
+
+    </div>
+
+
+    <div class="feedback-card">
+
+        <div class="feedback-number">
+            03 / DESIGN
+        </div>
+
+        <h3>
+            What should change?
+        </h3>
+
+        <p>
+            Your feedback can influence the features,
+            design, and direction of future prototypes.
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =========================================
+     INSTAGRAM POLL
+========================================= -->
+
+<section class="poll-section" id="poll">
+
+```
+<div class="poll-container">
+
+
+    <div class="poll-text">
+
+        <div class="eyebrow">
+            Tell Us What You Think
+        </div>
+
+        <h2>
+            Your opinion can influence the product.
+        </h2>
+
+        <p>
+            We're using Instagram to collect early feedback from
+            potential customers. Answer the questions, vote in our
+            polls, and help us understand what matters most before
+            StudLine reaches the market.
+        </p>
+
+    </div>
+
+
+    <div class="poll-box">
+
+        <div class="poll-icon">
+            ?
+        </div>
+
+        <h3>
+            Take the StudLine Poll
+        </h3>
+
+        <p>
+            Tell us whether you're interested, what you'd pay,
+            what features matter to you, and what you think
+            could make StudLine better.
+        </p>
+
+
+        <!--
+        =========================================
+        INSTAGRAM LINK
+        =========================================
+
+        REPLACE THE # BELOW WITH YOUR INSTAGRAM
+        PROFILE OR SPECIFIC POLL/POST LINK.
+
+        Example:
+
+        href="https://www.instagram.com/studline...."
+
+        =========================================
+        -->
+
+        <a
+            href="#"
+            class="instagram-button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Open Instagram Poll
+        </a>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =========================================
+     WHAT WE WANT TO KNOW
+========================================= -->
+
+<section class="questions">
+
+```
+<div class="questions-header">
+
+    <div class="eyebrow">
+        What We're Asking
+    </div>
+
+    <h2>
+        Help us answer the important questions.
+    </h2>
+
+    <p>
+        These are the kinds of questions we're trying to answer
+        before turning StudLine into a finished product.
+    </p>
+
+</div>
+
+
+<div class="question-grid">
+
+
+    <div class="question">
+
+        <h3>
+            Would you actually use StudLine?
+        </h3>
+
+        <p>
+            We're interested in whether the concept solves a problem
+            that framers experience regularly.
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+            How much would you pay?
+        </h3>
+
+        <p>
+            Help us understand the value of StudLine compared with
+            the time and effort spent manually laying out studs.
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+            What would make you trust it?
+        </h3>
+
+        <p>
+            Accuracy, durability, simplicity, speed, and reliability
+            are all areas we're evaluating.
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+            What should we improve?
+        </h3>
+
+        <p>
+            Tell us what you would change, add, remove, or redesign.
+            Good criticism helps us build a better product.
+        </p>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<!-- =========================================
+     FINAL CTA
+========================================= -->
+
+<section class="final-cta">
+
+```
+<div class="eyebrow">
+    Stay Connected
+</div>
+
+<h2>
+    Be there before the first production run.
+</h2>
+
+<p>
+    StudLine is still being engineered, tested, and refined.
+    Follow the project and help us build a tool worth putting
+    in a framer's hands.
+</p>
+
+<a
+    href="#poll"
+    class="button"
+>
+    Give Your Feedback
+</a>
+```
+
+</section>
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+```
+<strong>
+    STUDLINE
+</strong>
+
+<span>
+    Precision layout for modern framing.
+</span>
+```
+
+</footer>
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   SCROLL REVEAL ENGINE
+========================================= */
+
+const revealElements = document.querySelectorAll(
+
+    ".interest-intro, " +
+    ".feedback-card, " +
+    ".poll-text, " +
+    ".poll-box, " +
+    ".questions-header, " +
+    ".question, " +
+    ".final-cta"
+
+);
+
+
+const revealObserver = new IntersectionObserver(
+
+    function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if(entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.15
+    }
+
+);
+
+
+revealElements.forEach(function(element) {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================
+   STAGGER FEEDBACK CARDS
+========================================= */
+
+const feedbackCards =
+    document.querySelectorAll(".feedback-card");
+
+
+feedbackCards.forEach(function(card,index) {
+
+    card.style.transitionDelay =
+        (index * 0.12) + "s";
+
+});
+
+
+/* =========================================
+   STAGGER QUESTIONS
+========================================= */
+
+const questions =
+    document.querySelectorAll(".question");
+
+
+questions.forEach(function(question,index) {
+
+    question.style.transitionDelay =
+        (index * 0.10) + "s";
+
+});
+
+
+/* =========================================
+   HERO PARALLAX
+========================================= */
+
+const hero =
+    document.querySelector(".hero");
+
+
+window.addEventListener("scroll",function() {
+
+    const scrollPosition =
+        window.scrollY;
+
+
+    if(scrollPosition < 700) {
+
+        hero.style.backgroundPosition =
+            "0 " +
+            (scrollPosition * 0.12) +
+            "px";
+
+    }
+
+});
+
+
+</script>
+
+</body>
+</html>
